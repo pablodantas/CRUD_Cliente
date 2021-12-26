@@ -1,0 +1,32 @@
+package com.devsuperior.dsclient.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+
+import com.devsuperior.dsclient.dto.ClientDTO;
+import com.devsuperior.dsclient.entities.Client;
+import com.devsuperior.dsclient.repository.ClientRepository;
+
+@Service
+public class ClientService {
+	
+	@Autowired
+	ClientRepository repository;
+
+	public Page<ClientDTO> fildAllPaged(PageRequest pageRequest) {
+	    Page<Client> list = repository.findAll(pageRequest);
+	    return list.map(x -> new ClientDTO(x));
+	}
+	
+	 @GetMapping(value = "/{id}")
+	 public ResponseEntity<ClientDTO> findById(@PathVariable Long id) {
+	     CLientDTO dto = service.findById(id);
+	     return ResponseEntity.ok().body(dto);	
+	 }
+
+}

@@ -1,0 +1,14 @@
+package com.devsuperior.dsclient.dto;
+
+import java.time.Instant;
+
+public class ClientDTO {
+	
+	private long id;
+	private String name;
+	private String cpf;
+	private Double income;
+	private Instant birthDate;
+	private Integer children;
+
+}
